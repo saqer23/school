@@ -5,7 +5,7 @@ import {
     getFailed,
     getError
 } from './noticeSlice';
-const REACT_APP_BASE_URL = "http://localhost:5000";
+const REACT_APP_BASE_URL = process.env.REACT_APP_BASE_URL;
 export const getAllNotices = (id, address) => async (dispatch) => {
     dispatch(getRequest());
 
