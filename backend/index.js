@@ -33,6 +33,8 @@ const connection = () => {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             tls: true,
+            serverSelectionTimeoutMS: 60000, // 30 seconds timeout
+            socketTimeoutMS: 45000,          // 45 seconds socket inactivity timeout
             tlsAllowInvalidCertificates: true, // Accept invalid certificates (use with caution)
             ssl: true,
             sslValidate: false, // Disable SSL validation for testing purposes
@@ -40,7 +42,7 @@ const connection = () => {
             .then(() => console.log("Connected to MongoDB"))
             .catch((err) => console.log("NOT CONNECTED TO NETWORK", err));
     } catch (error) {
-        console.log(error);
+        console.log('error: ::', error);
 
     }
 }
