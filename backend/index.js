@@ -18,10 +18,10 @@ dotenv.config();
 app.use(express.json({ limit: '10mb' }))
 
 const corsOptions = {
-    origin: "*",
-    optionsSuccessStatus: 200,
-    credentials: true
-}
+    origin: '*', // Specify the allowed origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify which methods are allowed
+    allowedHeaders: ['Content-Type', 'Authorization'] // Specify which headers are allowed
+};
 
 
 app.use(cors(corsOptions))
