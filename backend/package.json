@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "node dist/index.js",
     "build": "babel . --out-dir dist --ignore node_modules",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
