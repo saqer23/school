@@ -16,7 +16,15 @@ dotenv.config();
 // app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }))
 
 app.use(express.json({ limit: '10mb' }))
-app.use(cors())
+
+const corsOptions = {
+    origin: "*",
+    optionsSuccessStatus: 200,
+    credentials: true
+}
+
+
+app.use(cors(corsOptions))
 
 
 const connection = () => {
@@ -35,7 +43,6 @@ const connection = () => {
         console.log(error);
 
     }
-
 }
 
 app.use('/', Routes);
