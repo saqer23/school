@@ -29,15 +29,18 @@ app.use(cors(corsOptions))
 
 const connection = () => {
     try {
-        mongoose.connect(process.env.MONGODB_URI, {
+        mongoose.connect(process.env.MONGO_URL, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            poolSize: 10, // Adjust based on your needs
-            serverSelectionTimeoutMS: 90000, // Timeout after 5 seconds
-            socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
+            tls: true,
+            serverSelectionTimeoutMS: 60000, // 30 seconds timeout
+            socketTimeoutMS: 45000,          // 45 seconds socket inactivity timeout
+            tlsAllowInvalidCertificates: true, // Accept invalid certificates (use with caution)
+            ssl: true,
+            sslValidate: false, // Disable SSL validation for testing purposes
         })
-            .then(() => console.log('Connected to MongoDB'))
-            .catch(err => console.error('Could not connect to MongoDB', err));
+            .then(() => console.log("Connected to MongoDB"))
+            .catch((err) => console.log("NOT CONNECTED TO NETWORK", err));
     } catch (error) {
         console.log('error: ::', error);
 

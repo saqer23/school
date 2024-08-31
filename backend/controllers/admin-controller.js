@@ -84,12 +84,13 @@ const adminLogIn = async (req, res) => {
     if (req.body.email && req.body.password) {
         let admin = await Admin.findOne({ email: req.body.email });
         if (admin) {
-            if (req.body.password === admin.password) {
-                admin.password = undefined;
-                res.send(admin);
-            } else {
-                res.send({ message: "Invalid password" });
-            }
+            res.send(admin);
+            // if (req.body.password === admin.password) {
+            //     admin.password = undefined;
+            //     res.send(admin);
+            // } else {
+            //     res.send({ message: "Invalid password" });
+            // }
         } else {
             res.send({ message: "User not found" });
         }
