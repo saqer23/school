@@ -6,6 +6,7 @@ const dotenv = require("dotenv")
 const app = express()
 const Routes = require("./routes/route.js")
 const Admin = require('./models/adminSchema.js');
+const timeout = require('connect-timeout'); // Import connect-timeout middleware
 
 
 const PORT = process.env.PORT || 5000
@@ -14,6 +15,7 @@ dotenv.config();
 
 // app.use(bodyParser.json({ limit: '10mb', extended: true }))
 // app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }))
+app.use(timeout('120s'));
 
 app.use(express.json({ limit: '10mb' }))
 
