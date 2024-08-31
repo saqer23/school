@@ -29,7 +29,7 @@ app.use(cors(corsOptions))
 
 const connection = () => {
     try {
-        mongoose.connect("mongodb+srv://aljabrisaqer23:Saq599167908@cluster0.3zxac.mongodb.net/school?retryWrites=true&w=majority", {
+        mongoose.connect(process.env.MONGO_URL, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             tls: true,
@@ -37,6 +37,7 @@ const connection = () => {
             socketTimeoutMS: 45000,          // 45 seconds socket inactivity timeout
             tlsAllowInvalidCertificates: true, // Accept invalid certificates (use with caution)
             ssl: true,
+            poolSize: 10,
             sslValidate: false, // Disable SSL validation for testing purposes
         })
             .then(() => console.log("Connected to MongoDB"))
