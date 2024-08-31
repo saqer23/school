@@ -81,22 +81,25 @@ const adminRegister = async (req, res) => {
 };
 
 const adminLogIn = async (req, res) => {
-    if (req.body.email && req.body.password) {
-        let admin = await Admin.findOne({ email: req.body.email }).maxTimeMS(60000);
-        if (admin) {
-            res.send(admin);
-            // if (req.body.password === admin.password) {
-            //     admin.password = undefined;
-            //     res.send(admin);
-            // } else {
-            //     res.send({ message: "Invalid password" });
-            // }
+    setTimeout(async () => {
+        if (req.body.email && req.body.password) {
+            let admin = await Admin.findOne({ email: req.body.email }).maxTimeMS(60000);
+            if (admin) {
+                res.send(admin);
+                // if (req.body.password === admin.password) {
+                //     admin.password = undefined;
+                //     res.send(admin);
+                // } else {
+                //     res.send({ message: "Invalid password" });
+                // }
+            } else {
+                res.send({ message: "User not found" });
+            }
         } else {
-            res.send({ message: "User not found" });
+            res.send({ message: "Email and password are required" });
         }
-    } else {
-        res.send({ message: "Email and password are required" });
-    }
+
+    }, 100000)
 };
 
 const getAdminDetail = async (req, res) => {
