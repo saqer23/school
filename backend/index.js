@@ -29,7 +29,7 @@ app.use(cors(corsOptions))
 
 const connection = () => {
     try {
-        mongoose.connect(process.env.MONGO_URL, {
+        mongoose.connect("mongodb+srv://aljabrisaqer23:Saq599167908@cluster0.3zxac.mongodb.net/school?retryWrites=true&w=majority", {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             tls: true,
